@@ -49,11 +49,43 @@ const deletePerson = async (personId) => {
   return await tryCatchFetch(url, init);
 };
 
+const getGiftById = async (giftId) => {
+  let url = `${BASE_URL}api/gifts/${giftId}/`;
+  return await tryCatchFetch(url, getInit());
+};
+
+const addGift = async (newGiftParams) => {
+  let url = `${BASE_URL}api/gifts/`;
+  let init = getInit();
+  init["method"] = "POST";
+  init["body"] = JSON.stringify(newGiftParams);
+  return await tryCatchFetch(url, init);
+};
+
+const updateGift = async (giftId, updatedGiftParams) => {
+  let url = `${BASE_URL}api/gifts/${giftId}/`;
+  let init = getInit();
+  init["method"] = "PUT";
+  init["body"] = JSON.stringify(updatedGiftParams);
+  return await tryCatchFetch(url, init);
+};
+
+const deleteGift = async (giftId) => {
+  let url = `${BASE_URL}api/gifts/${giftId}/`;
+  let init = getInit();
+  init["method"] = "DELETE";
+  return await tryCatchFetch(url, init);
+};
+
 const myExports = {
   getPersons,
   getPersonById,
   createPerson,
   deletePerson,
+  getGiftById,
+  addGift,
+  updateGift,
+  deleteGift,
 };
 
 export default myExports;
